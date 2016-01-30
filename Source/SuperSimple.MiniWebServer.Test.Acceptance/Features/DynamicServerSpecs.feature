@@ -8,3 +8,12 @@ Scenario: Set dynamic resource reply
 	Given I post to resource /MyResource/ResourceId with header Set-Reply:true
 	When I attempt a get on resource /MyResource/ResourceId
 	Then I should get back exactly what I set up
+
+@Acceptance.Dynamic
+Scenario: Set method for dynamic resource
+	Given I set resource /MyResource/ResourceId with header Set-Reply-Method:GET
+	When I attempt a get on resource /MyResource/ResourceId
+	Then I should get back exactly what I set up
+
+
+

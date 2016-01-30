@@ -34,8 +34,8 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DynamicServerSpecs", "In order to be able to mock web requests\nAs a developer writting service tests th" +
-                    "at mock out a web server\nI want to be able to set the reply to a web request", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DynamicServerSpecs", "In order to be able to mock web requests\r\nAs a developer writting service tests t" +
+                    "hat mock out a web server\r\nI want to be able to set the reply to a web request", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -87,6 +87,25 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.When("I attempt a get on resource /MyResource/ResourceId", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
+ testRunner.Then("I should get back exactly what I set up", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "DynamicServerSpecs")]
+        [Xunit.TraitAttribute("Description", "Set method for dynamic resource")]
+        public virtual void SetMethodForDynamicResource()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set method for dynamic resource", new string[] {
+                        "Acceptance.Dynamic"});
+#line 13
+this.ScenarioSetup(scenarioInfo);
+#line 14
+ testRunner.Given("I set resource /MyResource/ResourceId with header Set-Reply-Method:GET", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 15
+ testRunner.When("I attempt a get on resource /MyResource/ResourceId", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
  testRunner.Then("I should get back exactly what I set up", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
