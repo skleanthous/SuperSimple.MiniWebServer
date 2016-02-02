@@ -55,6 +55,11 @@
     <Compile Include="MiddlewareInvocationEnum.cs" />
     <Compile Include="MiddleWare\CustomMiddleware.cs" />
     <Compile Include="MiddleWare\DynamicControllerMiddleware.cs" />
+    <Compile Include="MiddleWare\Dynamo\ConstReplyController.cs" />
+    <Compile Include="MiddleWare\Dynamo\Dynamo.cs" />
+    <Compile Include="MiddleWare\Dynamo\DynamoRouter.cs" />
+    <Compile Include="MiddleWare\Dynamo\IController.cs" />
+    <Compile Include="MiddleWare\Dynamo\IDynamoRouter.cs" />
     <Compile Include="Properties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestHeaders.cs" />
