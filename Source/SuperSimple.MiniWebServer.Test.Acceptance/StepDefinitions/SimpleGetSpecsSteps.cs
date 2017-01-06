@@ -5,6 +5,8 @@ using TechTalk.SpecFlow;
 
 namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
 {
+    using System.Net;
+
     [Binding]
     public class SimpleGetSpecsSteps
     {
@@ -20,6 +22,7 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
         }
 
         [Given(@"I post to resource (.*) with header (.*):(.*)")]
+        [When(@"I post to resource (.*) with header (.*):(.*)")]
         public void GivenIPostToResourceWithHeader(string resource, string header, string headerValue)
         {
             var content = new StringContent(payload);
@@ -36,6 +39,24 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
         [Then(@"I should get back exactly what I set up")]
         public void ThenIShouldGetBackExactlyWhatISetUp()
         {
+            response.IsSuccessStatusCode.Should().BeTrue();
+            response.Content.ReadAsStringAsync().Result.Trim().Should().Be(payload);
+        }
+
+        [Then(@"a get on (.*) should return status 404")]
+        public void ThenAGetOnMyResourceResourceIdShouldReturnStatus(string resource)
+        {
+            var response = client.GetAsync(resource).Result;
+
+            response.Should().NotBeNull();
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+        }
+
+        [Then(@"a get on (.*) should get back exactly what I set up")]
+        public void ThenAGetOnMyResourceResourceIdShouldGetBackExactlyWhatISetUp(string resource)
+        {
+            var response = client.GetAsync(resource).Result;
+
             response.IsSuccessStatusCode.Should().BeTrue();
             response.Content.ReadAsStringAsync().Result.Trim().Should().Be(payload);
         }

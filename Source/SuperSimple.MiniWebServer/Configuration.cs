@@ -68,6 +68,9 @@ namespace SuperSimple.MiniWebServer
                 if (result == MiddlewareInvocationEnum.StopChain)
                     return;
             }
+
+            //No-one handled the request entirely -> Return 404
+            environment.ResponseStatusCode = 404;
         }
     }
 }
