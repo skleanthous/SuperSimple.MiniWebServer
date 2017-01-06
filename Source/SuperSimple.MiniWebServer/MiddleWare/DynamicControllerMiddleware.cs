@@ -10,6 +10,9 @@ namespace SuperSimple.MiniWebServer.MiddleWare
     internal class DynamicControllerMiddleware : IMiddleware
     {
         private const string SET_REPLY_HEADER_NAME = "Set-Reply";
+        private const string CLEAR_REPLY_HEADER_NAME = "Clear-Reply";
+        private const string CLEAR_ALL_VALUE = "all";
+        private const string CLEAR_THIS_VALUE = "this";
 
         private Dictionary<string, byte[]> Replies { get; set; }
 
@@ -32,6 +35,20 @@ namespace SuperSimple.MiniWebServer.MiddleWare
 
                 return MiddlewareInvocationEnum.StopChain;
             }
+            if (environment.RequestHeaders.TryGetValue(CLEAR_REPLY_HEADER_NAME, out setReplyHeader)
+                && !string.IsNullOrWhiteSpace(setReplyHeader[0]))
+            {
+                if (setReplyHeader[0].Equals(CLEAR_ALL_VALUE, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    Replies.Clear();
+                }
+                else if (setReplyHeader[0].Equals(CLEAR_THIS_VALUE, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    Replies.Remove(environment.RequestPath);
+                }
+
+                return MiddlewareInvocationEnum.StopChain;
+            }
             else
             {
                 byte[] data;
@@ -46,7 +63,9 @@ namespace SuperSimple.MiniWebServer.MiddleWare
                     return MiddlewareInvocationEnum.StopChain;
                 }
                 else
+                {
                     return MiddlewareInvocationEnum.ContinueToNext;
+                }
             }
         }
 

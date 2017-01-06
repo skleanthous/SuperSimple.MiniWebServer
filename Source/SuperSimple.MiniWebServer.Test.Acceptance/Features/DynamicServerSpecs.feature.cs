@@ -92,6 +92,69 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
+        [Xunit.FactAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "DynamicServerSpecs")]
+        [Xunit.TraitAttribute("Description", "Clear a specific dynamic resource reply")]
+        public virtual void ClearASpecificDynamicResourceReply()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clear a specific dynamic resource reply", new string[] {
+                        "Acceptance.Dynamic"});
+#line 13
+this.ScenarioSetup(scenarioInfo);
+#line 14
+ testRunner.Given("I post to resource /MyResource/ResourceId with header Set-Reply:true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 15
+ testRunner.When("I post to resource /MyResource/ResourceId with header Clear-Reply:this", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
+ testRunner.Then("a get on /MyResource/ResourceId should return status 404", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "DynamicServerSpecs")]
+        [Xunit.TraitAttribute("Description", "Clear a specific dynamic resource reply should only clear the specific path")]
+        public virtual void ClearASpecificDynamicResourceReplyShouldOnlyClearTheSpecificPath()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clear a specific dynamic resource reply should only clear the specific path", new string[] {
+                        "Acceptance.Dynamic"});
+#line 19
+this.ScenarioSetup(scenarioInfo);
+#line 20
+ testRunner.Given("I post to resource /MyResource/ResourceId with header Set-Reply:true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 21
+ testRunner.And("I post to resource /MyResource/ResourceId2 with header Set-Reply:true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 22
+ testRunner.When("I post to resource /MyResource/ResourceId with header Clear-Reply:this", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 23
+ testRunner.Then("a get on /MyResource/ResourceId2 should get back exactly what I set up", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "DynamicServerSpecs")]
+        [Xunit.TraitAttribute("Description", "Clear all dynamic resource replies")]
+        public virtual void ClearAllDynamicResourceReplies()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clear all dynamic resource replies", new string[] {
+                        "Acceptance.Dynamic"});
+#line 26
+this.ScenarioSetup(scenarioInfo);
+#line 27
+ testRunner.Given("I post to resource /MyResource/ResourceId with header Set-Reply:true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 28
+ testRunner.And("I post to resource /MyResource/ResourceId2 with header Set-Reply:true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+ testRunner.When("I post to resource /MyResource/ResourceId with header Clear-Reply:all", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.Then("a get on /MyResource/ResourceId should return status 404", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 31
+ testRunner.And("a get on /MyResource/ResourceId2 should return status 404", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable
