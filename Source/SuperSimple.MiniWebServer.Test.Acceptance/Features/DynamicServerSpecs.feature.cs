@@ -92,19 +92,26 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.FactAttribute()]
+        [Xunit.Extensions.TheoryAttribute()]
         [Xunit.TraitAttribute("FeatureTitle", "DynamicServerSpecs")]
         [Xunit.TraitAttribute("Description", "Set method for dynamic resource")]
-        public virtual void SetMethodForDynamicResource()
+        [Xunit.Extensions.InlineDataAttribute("GET", "POST", new string[0])]
+        [Xunit.Extensions.InlineDataAttribute("POST", "GET", new string[0])]
+        public virtual void SetMethodForDynamicResource(string verbToWork, string verbThatShouldNotWork, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set method for dynamic resource", new string[] {
-                        "Acceptance.Dynamic"});
+            string[] @__tags = new string[] {
+                    "Acceptance.Dynamic"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set method for dynamic resource", @__tags);
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 14
- testRunner.Given("I set resource /MyResource/ResourceId with header Set-Reply-Method:GET", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I set resource /MyResource/ResourceId with header Set-Reply-Method:<VerbToWork>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
- testRunner.When("I attempt a get on resource /MyResource/ResourceId", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I attempt a <VerbToWork> on resource /MyResource/ResourceId", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
  testRunner.Then("I should get back exactly what I set up", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

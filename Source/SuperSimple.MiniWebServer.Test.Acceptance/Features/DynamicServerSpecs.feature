@@ -10,10 +10,13 @@ Scenario: Set dynamic resource reply
 	Then I should get back exactly what I set up
 
 @Acceptance.Dynamic
-Scenario: Set method for dynamic resource
-	Given I set resource /MyResource/ResourceId with header Set-Reply-Method:GET
-	When I attempt a get on resource /MyResource/ResourceId
+Scenario Outline: Set method for dynamic resource
+	Given I set resource /MyResource/ResourceId with header Set-Reply-Method:<VerbToWork>
+	When I attempt a <VerbToWork> on resource /MyResource/ResourceId
 	Then I should get back exactly what I set up
 
-
+	Examples: 
+	| Verb to work | Verb that should not work |
+	| GET          | POST                      |
+	| POST         | GET                       |
 
