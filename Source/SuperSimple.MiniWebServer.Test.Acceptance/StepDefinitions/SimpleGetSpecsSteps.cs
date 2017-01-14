@@ -2,11 +2,10 @@
 using System;
 using System.Net.Http;
 using TechTalk.SpecFlow;
+using System.Net;
 
 namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
 {
-    using System.Net;
-
     [Binding]
     public class SimpleGetSpecsSteps
     {
@@ -29,11 +28,21 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
             content.Headers.Add(header, headerValue);
             client.PostAsync(resource, content).Wait();
         }
-        
-        [When(@"I attempt a get on resource (.*)")]
-        public void WhenIAttemptAGetOnResourceMyResourceResourceId(string resource)
+
+        [Given(@"I set resource (.*) with header (.*):(.*)")]
+        public void GivenISetResourceWithHeader(string resource, string header, string headerValue)
         {
-            response = client.GetAsync(resource).Result;
+            var content = new StringContent(payload);
+            content.Headers.Add(header, headerValue);
+            content.Headers.Add("Set-Reply", "true");
+            client.PostAsync(resource, content).Wait();
+        }
+
+        [When(@"I attempt a (.*) on resource (.*)")]
+        public void WhenIAttemptAGetOnResourceMyResourceResourceId(string method, string resource)
+        {
+            var requestMessage = new HttpRequestMessage(new HttpMethod(method), resource);
+            response = client.SendAsync(requestMessage).Result;
         }
         
         [Then(@"I should get back exactly what I set up")]

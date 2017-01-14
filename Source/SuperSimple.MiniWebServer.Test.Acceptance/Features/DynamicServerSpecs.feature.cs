@@ -34,8 +34,8 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DynamicServerSpecs", "In order to be able to mock web requests\nAs a developer writting service tests th" +
-                    "at mock out a web server\nI want to be able to set the reply to a web request", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DynamicServerSpecs", "In order to be able to mock web requests\r\nAs a developer writting service tests t" +
+                    "hat mock out a web server\r\nI want to be able to set the reply to a web request", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -151,6 +151,32 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("a get on /MyResource/ResourceId should return status 404", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 31
  testRunner.And("a get on /MyResource/ResourceId2 should return status 404", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.Extensions.TheoryAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "DynamicServerSpecs")]
+        [Xunit.TraitAttribute("Description", "Set method for dynamic resource")]
+        [Xunit.Extensions.InlineDataAttribute("GET", "POST", new string[0])]
+        [Xunit.Extensions.InlineDataAttribute("POST", "GET", new string[0])]
+        public virtual void SetMethodForDynamicResource(string verbToWork, string verbThatShouldNotWork, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Acceptance.Dynamic"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set method for dynamic resource", @__tags);
+#line 34
+this.ScenarioSetup(scenarioInfo);
+#line 35
+ testRunner.Given(string.Format("I set resource /MyResource/ResourceId with header Set-Reply-Method:{0}", verbToWork), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 36
+ testRunner.When(string.Format("I attempt a {0} on resource /MyResource/ResourceId", verbToWork), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 37
+ testRunner.Then("I should get back exactly what I set up", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
