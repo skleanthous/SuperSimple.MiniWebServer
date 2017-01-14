@@ -1,9 +1,7 @@
-﻿using Microsoft.Owin.Host.HttpListener;
-using Newtonsoft.Json;
-
-namespace SuperSimple.MiniWebServer.Host.Console
+﻿namespace SuperSimple.MiniWebServer.Host.Console
 {
     using Console = System.Console;
+
     class Program
     {
         static void Main(string[] args)
