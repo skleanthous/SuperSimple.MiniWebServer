@@ -34,8 +34,8 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DynamicServerSpecs", "In order to be able to mock web requests\r\nAs a developer writting service tests t" +
-                    "hat mock out a web server\r\nI want to be able to set the reply to a web request", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DynamicServerSpecs", "In order to be able to mock web requests\nAs a developer writting service tests th" +
+                    "at mock out a web server\nI want to be able to set the reply to a web request", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -177,6 +177,31 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When(string.Format("I attempt a {0} on resource /MyResource/ResourceId", verbToWork), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 37
  testRunner.Then("I should get back exactly what I set up", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.Extensions.TheoryAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "DynamicServerSpecs")]
+        [Xunit.TraitAttribute("Description", "Set content type for dynamic resource")]
+        [Xunit.Extensions.InlineDataAttribute("MyCustomContentType", new string[0])]
+        public virtual void SetContentTypeForDynamicResource(string contentType, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Acceptance.Dynamic"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set content type for dynamic resource", @__tags);
+#line 45
+this.ScenarioSetup(scenarioInfo);
+#line 46
+ testRunner.Given(string.Format("I set resource /MyResource/ResourceId with header Set-Content-Type:{0}", contentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 47
+ testRunner.When("I attempt a GET on resource /MyResource/ResourceId", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 48
+ testRunner.Then(string.Format("the the reply should have a content type of {0}", contentType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

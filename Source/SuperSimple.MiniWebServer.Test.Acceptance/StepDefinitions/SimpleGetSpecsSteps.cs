@@ -6,6 +6,8 @@ using System.Net;
 
 namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
 {
+    using System.Linq;
+
     [Binding]
     public class SimpleGetSpecsSteps
     {
@@ -68,6 +70,14 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
 
             response.IsSuccessStatusCode.Should().BeTrue();
             response.Content.ReadAsStringAsync().Result.Trim().Should().Be(payload);
+        }
+
+        [Then(@"the the reply should have a content type of (.*)")]
+        public void ThenTheTheReplyShouldHaveAContentTypeOf(string expectedContentType)
+        {
+            var contentHeaders = response.Content.Headers.GetValues("Content-Type");
+            contentHeaders.Should().NotBeNullOrEmpty();
+            contentHeaders.First().Should().Be(expectedContentType);
         }
     }
 }
