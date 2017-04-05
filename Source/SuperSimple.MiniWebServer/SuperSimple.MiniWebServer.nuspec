@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SuperSimple.MiniWebServer</id>
-    <version>0.1.0</version>
+    <version>0.3.0</version>
     <title>SuperSimple.MiniWebServer</title>
     <authors>Savvas Kleanthous</authors>
     <owners>Savvas Kleanthous</owners>
@@ -10,8 +10,13 @@
     <projectUrl>https://github.com/skleanthous/SuperSimple.MiniWebServer</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A full web server whose only dependency is Microsoft.Owin.Host.HttpListener. It can be used in-proc for super-easily stubbing 3rd party dependencies and validating.</description>
-    <copyright>Copyright 2016</copyright>
+    <copyright>Copyright 2017</copyright>
     <tags>OWIN Web server Web API acceptane tests custom</tags>
   </metadata>
-
+  <files>
+    <file src="SuperSimple.MiniWebServer.dll" target="lib\net45" />
+  </files>
+  <dependencies>
+    <dependency id="Microsoft.Owin.Host.HttpListener" version="3.0.1" />
+  </dependencies>  
 </package>
