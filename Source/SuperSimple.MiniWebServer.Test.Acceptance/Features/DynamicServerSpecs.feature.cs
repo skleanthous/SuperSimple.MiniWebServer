@@ -34,8 +34,8 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DynamicServerSpecs", "In order to be able to mock web requests\nAs a developer writting service tests th" +
-                    "at mock out a web server\nI want to be able to set the reply to a web request", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "DynamicServerSpecs", "In order to be able to mock web requests\r\nAs a developer writting service tests t" +
+                    "hat mock out a web server\r\nI want to be able to set the reply to a web request", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

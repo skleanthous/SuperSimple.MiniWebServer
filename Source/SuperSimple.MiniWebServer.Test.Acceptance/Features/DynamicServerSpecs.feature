@@ -36,7 +36,7 @@ Scenario Outline: Set method for dynamic resource
 	When I attempt a <VerbToWork> on resource /MyResource/ResourceId
 	Then I should get back exactly what I set up
 
-	Examples: 
+	Examples:
 	| VerbToWork | Verb that should not work |
 	| GET        | POST                      |
 	| POST       | GET                       |
@@ -47,7 +47,7 @@ Scenario Outline: Set content type for dynamic resource
 	When I attempt a GET on resource /MyResource/ResourceId
 	Then the the reply should have a content type of <ContentType>
 
-	Examples: 
+	Examples:
 	| ContentType         |
 	| MyCustomContentType |
 

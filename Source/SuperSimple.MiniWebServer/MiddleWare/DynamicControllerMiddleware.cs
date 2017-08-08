@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Reply = System.Tuple<byte[], string>;
 
 namespace SuperSimple.MiniWebServer.MiddleWare
@@ -35,7 +34,7 @@ namespace SuperSimple.MiniWebServer.MiddleWare
                 && bool.TryParse(setReplyHeader[0], out shouldSetReply)
                 && shouldSetReply)
             {
-                var content = await ReadAllBytes(environment.RequestBody);
+                var content = await environment.RequestBody.ReadAllBytes();
 
                 Replies[environment.RequestPath] = new Reply(content, GetSetContentTypeOrDefault(environment.RequestHeaders));
 
@@ -98,20 +97,6 @@ namespace SuperSimple.MiniWebServer.MiddleWare
             else
             {
                 return DEFAULT_CONTENT_TYPE;
-            }
-        }
-
-        private static async Task<byte[]> ReadAllBytes(Stream input)
-        {
-            byte[] buffer = new byte[16 * 1024];
-            using (MemoryStream ms = new MemoryStream())
-            {
-                int read;
-                while ((read = await input.ReadAsync(buffer, 0, buffer.Length)) > 0)
-                {
-                    await ms.WriteAsync(buffer, 0, read);
-                }
-                return ms.ToArray();
             }
         }
     }

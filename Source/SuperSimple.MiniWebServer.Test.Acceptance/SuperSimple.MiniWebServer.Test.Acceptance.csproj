@@ -41,6 +41,9 @@
       <HintPath>..\packages\FluentAssertions.4.2.1\lib\net45\FluentAssertions.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -63,17 +66,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\ControllerFunctionSpecs.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ControllerFunctionSpecs.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\DynamicServerSpecs.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DynamicServerSpecs.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StepDefinitions\ControllerFunctionStepDefinitions.cs" />
+    <Compile Include="StepDefinitions\Helpers\ControllerFunctionHelper.cs" />
+    <Compile Include="StepDefinitions\Helpers\HttpClientHelper.cs" />
     <Compile Include="StepDefinitions\Lifetime.cs" />
     <Compile Include="StepDefinitions\SimpleGetSpecsSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Features\ControllerFunctionSpecs.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ControllerFunctionSpecs.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\DynamicServerSpecs.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>DynamicServerSpecs.feature.cs</LastGenOutput>

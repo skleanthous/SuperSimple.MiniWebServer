@@ -33,7 +33,7 @@ namespace SuperSimple.MiniWebServer
             return middlewareSetup;
         }
 
-        public static IMiddlewareSetup AddCustomController(this IMiddlewareSetup middlewareSetup, 
+        public static IMiddlewareSetup AddCustomController(this IMiddlewareSetup middlewareSetup,
             Func<Environment, Task<MiddlewareInvocationEnum>> handler)
         {
             middlewareSetup.AddMiddleWare(new CustomMiddleware(handler));
