@@ -34,8 +34,8 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ControllerFunctionSpecs", "In order to avoid silly mistakes\r\nAs a math idiot\r\nI want to be told the sum of t" +
-                    "wo numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "ControllerFunctionSpecs", "In order to be able to adapt the responses\r\nAs a tester\r\nI want to respond to req" +
+                    "uests dynamically by inspecting the request", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

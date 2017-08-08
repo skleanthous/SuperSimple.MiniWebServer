@@ -1,7 +1,7 @@
 ﻿Feature: ControllerFunctionSpecs
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+	In order to be able to adapt the responses
+	As a tester
+	I want to respond to requests dynamically by inspecting the request
 
 @Acceptance.ControllerFunction
 Scenario: Controller function gets hit if path and method matches
@@ -20,3 +20,5 @@ Scenario: Controller function returns susccessfully
 	Then the reply should return
 	| Name   | Value |
 	| MyName | 5     |
+
+# Add more tests to test request data is filled properly in controller function
