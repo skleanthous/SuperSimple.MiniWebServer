@@ -12,7 +12,8 @@ namespace SuperSimple.MiniWebServer
         private RequestHeaders requestHeaders;
         private ResponseHeaders responseHeaders;
 
-        public Stream RequestBody { get { return this["owin.RequestBody"] as Stream; } }
+        public Stream RequestBody => this["owin.RequestBody"] as Stream;
+
         public RequestHeaders RequestHeaders
         {
             get
@@ -23,26 +24,19 @@ namespace SuperSimple.MiniWebServer
                 return requestHeaders;
             }
         }
-        public string RequestMethod { get { return (string)this["owin.RequestMethod"]; } }
-        public string RequestPath { get { return (string)this["owin.RequestPath"]; } }
-        public string RequestPathBase { get { return (string)this["owin.RequestPathBase"]; } }
-        public string RequestQueryString { get {return (string)this["owin.RequestQueryString"];} }
+        public string RequestMethod => (string)this["owin.RequestMethod"];
+        public string RequestPath => (string)this["owin.RequestPath"];
+        public string RequestPathBase => (string)this["owin.RequestPathBase"];
+        public string RequestQueryString => (string)this["owin.RequestQueryString"];
 
-        public Stream ResponseBody { get { return (Stream)this["owin.ResponseBody"]; } }
-        public ResponseHeaders ResponseHeaders
-        {
-            get
-            {
-                if (responseHeaders == null)
-                    responseHeaders = new ResponseHeaders((IDictionary<string, string[]>)this["owin.ResponseHeaders"]);
+        public Stream ResponseBody => (Stream)this["owin.ResponseBody"];
+        public ResponseHeaders ResponseHeaders =>
+            responseHeaders ?? (responseHeaders = new ResponseHeaders((IDictionary<string, string[]>) this["owin.ResponseHeaders"]));
 
-                return responseHeaders;
-            }
-        }
         public int ResponseStatusCode
         {
-            get { return (int)this["owin.ResponseStatusCode"]; }
-            set { this["owin.ResponseStatusCode"] = value; }
+            get => (int)this["owin.ResponseStatusCode"];
+            set => this["owin.ResponseStatusCode"] = value;
         }
 
         internal Environment(IDictionary<string, object> environment)

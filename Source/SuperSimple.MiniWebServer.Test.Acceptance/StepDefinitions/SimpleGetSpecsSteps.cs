@@ -7,57 +7,51 @@ using System.Net;
 namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
 {
     using System.Linq;
+    using SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions.Helpers;
 
     [Binding]
     public class SimpleGetSpecsSteps
     {
-        private HttpClient client = new HttpClient();
         private string payload;
 
-        private HttpResponseMessage response;
+        private HttpClientHelper Helper { get; }
 
-        public SimpleGetSpecsSteps()
+        public SimpleGetSpecsSteps(HttpClientHelper helper)
         {
             payload = Guid.NewGuid().ToString();
-            client.BaseAddress = new Uri("http://localhost:8182");
+            Helper = helper;
         }
 
         [Given(@"I post to resource (.*) with header (.*):(.*)")]
         [When(@"I post to resource (.*) with header (.*):(.*)")]
         public void GivenIPostToResourceWithHeader(string resource, string header, string headerValue)
         {
-            var content = new StringContent(payload);
-            content.Headers.Add(header, headerValue);
-            client.PostAsync(resource, content).Wait();
+            Helper.Post(resource, header, headerValue, payload);
         }
 
         [Given(@"I set resource (.*) with header (.*):(.*)")]
         public void GivenISetResourceWithHeader(string resource, string header, string headerValue)
         {
-            var content = new StringContent(payload);
-            content.Headers.Add(header, headerValue);
-            content.Headers.Add("Set-Reply", "true");
-            client.PostAsync(resource, content).Wait();
+            Helper.PostAndSetReply(resource, header, headerValue, payload);
         }
 
         [When(@"I attempt a (.*) on resource (.*)")]
-        public void WhenIAttemptAGetOnResourceMyResourceResourceId(string method, string resource)
+        public void WhenIAttemptAnActionOnResourceMyResourceResourceId(string method, string resource)
         {
-            var requestMessage = new HttpRequestMessage(new HttpMethod(method), resource);
-            response = client.SendAsync(requestMessage).Result;
+            Helper.Send(method, resource);
         }
-        
+
         [Then(@"I should get back exactly what I set up")]
         public void ThenIShouldGetBackExactlyWhatISetUp()
         {
-            response.IsSuccessStatusCode.Should().BeTrue();
-            response.Content.ReadAsStringAsync().Result.Trim().Should().Be(payload);
+            Helper.LastCallResponse.IsSuccessStatusCode.Should().BeTrue();
+            Helper.LastCallResponse.Content.ReadAsStringAsync().Result.Trim().Should().Be(payload);
         }
 
         [Then(@"a get on (.*) should return status 404")]
         public void ThenAGetOnMyResourceResourceIdShouldReturnStatus(string resource)
         {
-            var response = client.GetAsync(resource).Result;
+            var response = Helper.GetAsMessage(resource);
 
             response.Should().NotBeNull();
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -66,7 +60,7 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
         [Then(@"a get on (.*) should get back exactly what I set up")]
         public void ThenAGetOnMyResourceResourceIdShouldGetBackExactlyWhatISetUp(string resource)
         {
-            var response = client.GetAsync(resource).Result;
+            var response = Helper.GetAsMessage(resource);
 
             response.IsSuccessStatusCode.Should().BeTrue();
             response.Content.ReadAsStringAsync().Result.Trim().Should().Be(payload);
@@ -75,7 +69,7 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
         [Then(@"the the reply should have a content type of (.*)")]
         public void ThenTheTheReplyShouldHaveAContentTypeOf(string expectedContentType)
         {
-            var contentHeaders = response.Content.Headers.GetValues("Content-Type");
+            var contentHeaders = Helper.LastCallResponse.Content.Headers.GetValues("Content-Type");
             contentHeaders.Should().NotBeNullOrEmpty();
             contentHeaders.First().Should().Be(expectedContentType);
         }
