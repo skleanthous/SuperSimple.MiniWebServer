@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SuperSimple.MiniWebServer</id>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
     <title>SuperSimple.MiniWebServer</title>
     <authors>Savvas Kleanthous</authors>
     <owners>Savvas Kleanthous</owners>
