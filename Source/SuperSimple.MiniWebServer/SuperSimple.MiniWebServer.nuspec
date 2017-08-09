@@ -17,6 +17,6 @@
     </dependencies>  
   </metadata>
   <files>
-    <file src="SuperSimple.MiniWebServer.dll" target="lib\net45" />
+    <file src="bin\Release\SuperSimple.MiniWebServer.dll" target="lib\net45" />
   </files>
 </package>
