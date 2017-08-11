@@ -1,9 +1,9 @@
-﻿namespace SuperSimple.MiniWebServer.MiddleWare
+﻿namespace SuperSimple.MiniWebServer.MiddleWare.ControllerFunction
 {
     using System;
     using System.Threading.Tasks;
     using Environment = SuperSimple.MiniWebServer.Environment;
-    using Controller = System.Func<Request, Response>;
+    using Controller = System.Func<Request, Response.IResponse>;
 
     internal class ControllerFunctionMiddleware : IMiddleware
     {
@@ -11,11 +11,9 @@
         public Controller ControllerFunction { get; }
 
         public ControllerFunctionMiddleware(Request acceptedRequest, Controller controller)
+            : this(req => req == acceptedRequest, controller)
         {
-            acceptedRequest = acceptedRequest ?? throw new ArgumentNullException(nameof(acceptedRequest));
-            CanHandleRequest = req => acceptedRequest == req;
-
-            ControllerFunction = controller ?? throw new ArgumentNullException(nameof(controller));
+            if(acceptedRequest == null) throw new ArgumentNullException(nameof(acceptedRequest));
         }
 
         public ControllerFunctionMiddleware(Func<Request, bool> canHandle, Controller controller)
@@ -31,17 +29,7 @@
             if(!CanHandleRequest(request))
                 return MiddlewareInvocationEnum.ContinueToNext;
 
-            var reply = ControllerFunction(request);
-
-            var context = (environment["System.Net.HttpListenerContext"] as System.Net.HttpListenerContext);
-            if(context == null) throw new Exception("HttpListenerContext is not in context.");
-            context.Response.SendChunked = false;
-            context.Response.ContentLength64 = reply.ContentBytes.Length;
-            context.Response.ContentEncoding = reply.ContentEncoding;
-            context.Response.ContentType = reply.ContentType;
-
-            await environment.ResponseBody.WriteAsync(reply.ContentBytes, 0, reply.ContentBytes.Length);
-            await environment.ResponseBody.FlushAsync();
+            await ControllerFunction(request).WriteContentTo(environment);
 
             return MiddlewareInvocationEnum.StopChain;
         }
