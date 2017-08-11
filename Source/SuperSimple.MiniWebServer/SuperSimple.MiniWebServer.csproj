@@ -54,6 +54,7 @@
     <Compile Include="ConfigurationExtensions\FunctionalExtensionSetup.cs" />
     <Compile Include="ConfigurationExtensions\HostSetupExtensions.cs" />
     <Compile Include="ContentDispositionData.cs" />
+    <Compile Include="ControllerReply.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="HostAddress.cs" />
     <Compile Include="IMiddleware.cs" />
@@ -71,8 +72,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="RequestHeaders.cs" />
-    <Compile Include="Response.cs" />
+    <Compile Include="Response\IResponse.cs" />
     <Compile Include="ResponseHeaders.cs" />
+    <Compile Include="Response\HttpContentRsponse.cs" />
+    <Compile Include="Response\ObjectResponse.cs" />
+    <Compile Include="Response\ResponseFactory.cs" />
+    <Compile Include="Response\NoContentResponse.cs" />
     <Compile Include="WrappedDictionary.cs" />
   </ItemGroup>
   <ItemGroup>

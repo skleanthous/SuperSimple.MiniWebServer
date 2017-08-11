@@ -128,6 +128,78 @@ this.ScenarioSetup(scenarioInfo);
                         "5"});
 #line 20
  testRunner.Then("the reply should return", ((string)(null)), table3, "Then ");
+#line 23
+ testRunner.Then("the reply should have a status code of 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "ControllerFunctionSpecs")]
+        [Xunit.TraitAttribute("Description", "Controller function returns custom status code with content")]
+        public virtual void ControllerFunctionReturnsCustomStatusCodeWithContent()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Controller function returns custom status code with content", new string[] {
+                        "Acceptance.ControllerFunction"});
+#line 26
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Value"});
+            table4.AddRow(new string[] {
+                        "MyName",
+                        "5"});
+#line 27
+ testRunner.Given("a controller function on GET - /MyResource/ResourceId that returns status code 20" +
+                    "1 and", ((string)(null)), table4, "Given ");
+#line 30
+ testRunner.When("I attempt a get on resource /MyResource/ResourceId", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 31
+ testRunner.Then("the reply should have a status code of 201", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Value"});
+            table5.AddRow(new string[] {
+                        "MyName",
+                        "5"});
+#line 32
+ testRunner.And("the reply should return", ((string)(null)), table5, "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute()]
+        [Xunit.TraitAttribute("FeatureTitle", "ControllerFunctionSpecs")]
+        [Xunit.TraitAttribute("Description", "Controller function returns HttpContent")]
+        public virtual void ControllerFunctionReturnsHttpContent()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Controller function returns HttpContent", new string[] {
+                        "Acceptance.ControllerFunction"});
+#line 37
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Value"});
+            table6.AddRow(new string[] {
+                        "MyName",
+                        "5"});
+#line 38
+ testRunner.Given("a controller function on GET - /MyResource/ResourceId that returns as HttpContent" +
+                    "", ((string)(null)), table6, "Given ");
+#line 41
+ testRunner.When("I attempt a get on resource /MyResource/ResourceId", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Value"});
+            table7.AddRow(new string[] {
+                        "MyName",
+                        "5"});
+#line 42
+ testRunner.Then("the reply should return", ((string)(null)), table7, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

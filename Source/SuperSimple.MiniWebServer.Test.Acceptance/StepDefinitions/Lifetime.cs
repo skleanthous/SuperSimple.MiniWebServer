@@ -20,10 +20,12 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
         }
 
         private ControllerFunctionHelper ControllerFunctionHelper { get; set; }
+        private ControllerFunctionWithReplyHelper ControllerFunctionWithReplyHelper { get; set; }
 
-        public Lifetime(ControllerFunctionHelper helper)
+        public Lifetime(ControllerFunctionHelper helper, ControllerFunctionWithReplyHelper withReplyHelper)
         {
             ControllerFunctionHelper = helper;
+            ControllerFunctionWithReplyHelper = withReplyHelper;
         }
 
         [BeforeScenario]
@@ -34,6 +36,7 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
                 .WithMiddleware()
                 .AddDynamicController()
                 .AddControllerFunction(ControllerFunctionHelper.CanHandleCall, ControllerFunctionHelper.HandleCall)
+                .AddControllerFunction(ControllerFunctionWithReplyHelper.CanHandleCall, ControllerFunctionWithReplyHelper.HandleCall)
                 .Build();
 
             ServerHandle = serverStarter();
