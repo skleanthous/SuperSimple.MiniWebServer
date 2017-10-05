@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 
@@ -45,7 +41,7 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
         [AfterScenario]
         public void ScenarioTeardown()
         {
-            ServerHandle.Dispose();
+            ServerHandle?.Dispose();
             ServerHandle = null;
         }
     }

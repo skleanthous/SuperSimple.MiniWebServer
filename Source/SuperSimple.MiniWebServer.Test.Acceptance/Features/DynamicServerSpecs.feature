@@ -50,4 +50,3 @@ Scenario Outline: Set content type for dynamic resource
 	Examples:
 	| ContentType         |
 	| MyCustomContentType |
-
