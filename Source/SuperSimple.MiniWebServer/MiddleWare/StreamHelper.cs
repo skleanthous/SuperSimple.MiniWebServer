@@ -7,7 +7,7 @@
     {
         public static async Task<byte[]> ReadAllBytes(this Stream input)
         {
-            using (MemoryStream ms = new MemoryStream())
+            using (var ms = new MemoryStream())
             {
                 await input.CopyToAsync(ms);
 

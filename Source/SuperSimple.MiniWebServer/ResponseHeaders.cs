@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace SuperSimple.MiniWebServer
+﻿namespace SuperSimple.MiniWebServer
 {
+    using System.Collections.Generic;
+
     public class ResponseHeaders : WrappedDictionary<string, string[]>
     {
         private const string CONTENT_TYPE = "Content-Type";

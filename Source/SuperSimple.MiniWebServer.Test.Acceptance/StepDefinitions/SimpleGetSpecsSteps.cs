@@ -1,13 +1,11 @@
-﻿using FluentAssertions;
-using System;
-using System.Net.Http;
-using TechTalk.SpecFlow;
-using System.Net;
-
-namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
+﻿namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
 {
-    using System.Linq;
+    using FluentAssertions;
     using SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions.Helpers;
+    using System;
+    using System.Linq;
+    using System.Net;
+    using TechTalk.SpecFlow;
 
     [Binding]
     public class SimpleGetSpecsSteps

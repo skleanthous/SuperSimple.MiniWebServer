@@ -60,7 +60,6 @@
     <Compile Include="MiddlewareInvocationEnum.cs" />
     <Compile Include="MiddleWare\CustomMiddleware.cs" />
     <Compile Include="MiddleWare\DynamicControllerMiddleware.cs" />
-    <Compile Include="MiddleWare\Dynamo\ConstReplyController.cs" />
     <Compile Include="MiddleWare\Dynamo\Dynamo.cs" />
     <Compile Include="MiddleWare\Dynamo\DynamoRouter.cs" />
     <Compile Include="MiddleWare\Dynamo\IController.cs" />

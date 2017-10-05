@@ -1,12 +1,9 @@
-﻿using SuperSimple.MiniWebServer.MiddleWare;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SuperSimple.MiniWebServer
+﻿namespace SuperSimple.MiniWebServer
 {
+    using SuperSimple.MiniWebServer.MiddleWare;
+    using System;
+    using System.Threading.Tasks;
+
     public static class DynamicMiddlewareSetup
     {
         public static IMiddlewareSetup AddDynamicController(this IMiddlewareSetup middlewareSetup)

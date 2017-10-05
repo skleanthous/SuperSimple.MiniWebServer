@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Reply = System.Tuple<byte[], string>;
-
-namespace SuperSimple.MiniWebServer.MiddleWare
+﻿namespace SuperSimple.MiniWebServer.MiddleWare
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Environment = SuperSimple.MiniWebServer.Environment;
+    using Reply = System.Tuple<byte[], string>;
+
     internal class DynamicControllerMiddleware : IMiddleware
     {
         private const string SET_REPLY_HEADER_NAME = "Set-Reply";
@@ -56,11 +55,10 @@ namespace SuperSimple.MiniWebServer.MiddleWare
             }
             else
             {
-                Reply data;
 
                 try
                 {
-                    if (Replies.TryGetValue(environment.RequestPath, out data))
+                    if (Replies.TryGetValue(environment.RequestPath, out Reply data))
                     {
                         var context = (environment["System.Net.HttpListenerContext"] as System.Net.HttpListenerContext);
                         context.Response.SendChunked = false;
@@ -78,7 +76,7 @@ namespace SuperSimple.MiniWebServer.MiddleWare
                         return MiddlewareInvocationEnum.ContinueToNext;
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     environment.ResponseStatusCode = 500;
                     return MiddlewareInvocationEnum.StopChain;
@@ -88,8 +86,7 @@ namespace SuperSimple.MiniWebServer.MiddleWare
 
         private static string GetSetContentTypeOrDefault(RequestHeaders headers)
         {
-            string[] setContentTypeHeaders;
-            if (headers.TryGetValue(SET_CONTENT_TYPE_HEADER_NAME, out setContentTypeHeaders)
+            if (headers.TryGetValue(SET_CONTENT_TYPE_HEADER_NAME, out string[] setContentTypeHeaders)
                 && !string.IsNullOrWhiteSpace(setContentTypeHeaders[0]))
             {
                 return setContentTypeHeaders[0];
