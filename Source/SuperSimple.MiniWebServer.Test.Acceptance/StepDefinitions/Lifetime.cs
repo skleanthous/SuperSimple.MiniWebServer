@@ -26,7 +26,7 @@
         public void ScenarioSetup()
         {
             var serverStarter = Configuration.Start()
-                .SetHostAddress(System.Uri.UriSchemeHttp, "localhost", 8182)
+                .SetBaseUrl(new Uri("http://localhost:8182"))
                 .WithMiddleware()
                 .AddDynamicController()
                 .AddControllerFunction(ControllerFunctionHelper.CanHandleCall, ControllerFunctionHelper.HandleCall)
