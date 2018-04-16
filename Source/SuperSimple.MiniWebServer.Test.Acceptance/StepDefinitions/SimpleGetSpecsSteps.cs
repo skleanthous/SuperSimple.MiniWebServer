@@ -64,12 +64,18 @@
             response.Content.ReadAsStringAsync().Result.Trim().Should().Be(payload);
         }
 
-        [Then(@"the the reply should have a content type of (.*)")]
-        public void ThenTheTheReplyShouldHaveAContentTypeOf(string expectedContentType)
+        [Then(@"the reply should have a content type of (.*)")]
+        public void ThenTheReplyShouldHaveAContentTypeOf(string expectedContentType)
         {
             var contentHeaders = Helper.LastCallResponse.Content.Headers.GetValues("Content-Type");
             contentHeaders.Should().NotBeNullOrEmpty();
             contentHeaders.First().Should().Be(expectedContentType);
+        }
+
+        [Then(@"the reply should have a status code of (.*)")]
+        public void ThenTheReplyShouldHaveAStatusCodeOf(string expectedStatusCode)
+        {
+            Helper.LastCallResponse.StatusCode.ToString().Should().Be(expectedStatusCode);
         }
     }
 }

@@ -74,12 +74,6 @@
             };
         }
 
-        [Then(@"the reply should have a status code of (.*)")]
-        public void ThenTheReplyShouldHaveAStatusCodeOf(int statusCode)
-        {
-            ((int) HttpClientHelper.LastCallResponse.StatusCode).Should().Be(statusCode);
-        }
-
         [Then(@"the controller function should be called")]
         public void ThenTheControllerFunctionShouldBeCalled()
         {
