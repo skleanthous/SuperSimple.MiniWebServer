@@ -1,12 +1,10 @@
-﻿using Microsoft.Owin.Host.HttpListener;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SuperSimple.MiniWebServer
+﻿namespace SuperSimple.MiniWebServer
 {
+    using Microsoft.Owin.Host.HttpListener;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     public interface IEnvironmentSetup
     {
         Properties Properties { get; }

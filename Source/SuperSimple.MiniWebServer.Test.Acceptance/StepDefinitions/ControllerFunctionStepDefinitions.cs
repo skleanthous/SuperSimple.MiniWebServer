@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TechTalk.SpecFlow;
-
-namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
+﻿namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
 {
-    using System.Net.Http;
     using FluentAssertions;
     using Newtonsoft.Json;
     using SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions.Helpers;
+    using System.Net.Http;
+    using System.Text;
+    using TechTalk.SpecFlow;
     using TechTalk.SpecFlow.Assist;
+
 
     [Binding]
     public sealed class ControllerFunctionStepDefinitions

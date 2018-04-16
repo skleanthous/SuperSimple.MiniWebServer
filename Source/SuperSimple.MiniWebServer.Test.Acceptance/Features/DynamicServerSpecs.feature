@@ -45,9 +45,23 @@ Scenario Outline: Set method for dynamic resource
 Scenario Outline: Set content type for dynamic resource
 	Given I set resource /MyResource/ResourceId with header Set-Content-Type:<ContentType>
 	When I attempt a GET on resource /MyResource/ResourceId
-	Then the the reply should have a content type of <ContentType>
+	Then the reply should have a content type of <ContentType>
 
 	Examples:
 	| ContentType         |
 	| MyCustomContentType |
 
+@Acceptance.Dynamic
+Scenario Outline: Set status code for dynamic resource
+	Given I set resource /MyResource/ResourceId with header Set-Status-Code:<StatusCode>
+	When I attempt a GET on resource /MyResource/ResourceId
+	Then the reply should have a status code of <StatusCode>
+
+	Examples:
+	| StatusCode |
+	| 200        |
+	| 201        |
+	| 400        |
+	| 404        |
+	| 500        |
+	| 501        |
