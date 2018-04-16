@@ -1,13 +1,11 @@
-﻿using FluentAssertions;
-using System;
-using System.Net.Http;
-using TechTalk.SpecFlow;
-using System.Net;
-
-namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
+﻿namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
 {
-    using System.Linq;
+    using FluentAssertions;
     using SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions.Helpers;
+    using System;
+    using System.Linq;
+    using System.Net;
+    using TechTalk.SpecFlow;
 
     [Binding]
     public class SimpleGetSpecsSteps
@@ -66,12 +64,18 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
             response.Content.ReadAsStringAsync().Result.Trim().Should().Be(payload);
         }
 
-        [Then(@"the the reply should have a content type of (.*)")]
-        public void ThenTheTheReplyShouldHaveAContentTypeOf(string expectedContentType)
+        [Then(@"the reply should have a content type of (.*)")]
+        public void ThenTheReplyShouldHaveAContentTypeOf(string expectedContentType)
         {
             var contentHeaders = Helper.LastCallResponse.Content.Headers.GetValues("Content-Type");
             contentHeaders.Should().NotBeNullOrEmpty();
             contentHeaders.First().Should().Be(expectedContentType);
+        }
+
+        [Then(@"the reply should have a status code of (.*)")]
+        public void ThenTheReplyShouldHaveAStatusCodeOf(string expectedStatusCode)
+        {
+            Helper.LastCallResponse.StatusCode.ToString().Should().Be(expectedStatusCode);
         }
     }
 }

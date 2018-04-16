@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace SuperSimple.MiniWebServer
+﻿namespace SuperSimple.MiniWebServer
 {
+    using System.Collections.Generic;
+
     public class HostAddress : WrappedDictionary<string, object>
     {
         private const string SCHEME = "scheme";

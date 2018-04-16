@@ -20,7 +20,7 @@ Scenario: Controller function returns susccessfully
 	Then the reply should return
 	| Name   | Value |
 	| MyName | 5     |
-	Then the reply should have a status code of 200
+	Then the reply should have a status code of OK
 
 @Acceptance.ControllerFunction
 Scenario: Controller function returns custom status code with content
@@ -28,7 +28,7 @@ Scenario: Controller function returns custom status code with content
 	| Name   | Value |
 	| MyName | 5     |
 	When I attempt a get on resource /MyResource/ResourceId
-	Then the reply should have a status code of 201
+	Then the reply should have a status code of Created
 	And the reply should return
 	| Name   | Value |
 	| MyName | 5     |

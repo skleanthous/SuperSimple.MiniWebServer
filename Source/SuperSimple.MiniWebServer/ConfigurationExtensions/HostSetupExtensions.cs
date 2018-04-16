@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SuperSimple.MiniWebServer
+﻿namespace SuperSimple.MiniWebServer
 {
+    using System;
+
     public static class HostSetupExtensions
     {
-        public static IEnvironmentSetup SetHostAddress(this IEnvironmentSetup envSetup, 
+        public static IEnvironmentSetup SetHostAddress(this IEnvironmentSetup envSetup,
             string scheme, string domain, int port)
         {
             envSetup.Properties.HostAddresses = new[] {new HostAddress()
@@ -22,6 +18,19 @@ namespace SuperSimple.MiniWebServer
             return envSetup;
         }
 
+        public static IEnvironmentSetup SetBaseUrl(this IEnvironmentSetup envSetup,
+            Uri baseUrl)
+        {
+            envSetup.Properties.HostAddresses = new[] {new HostAddress()
+            {
+                Scheme = baseUrl.Scheme,
+                Domain = baseUrl.Host,
+                Port = baseUrl.Port,
+                Path = baseUrl.AbsolutePath,
+            } };
+
+            return envSetup;
+        }
 
         //TODO: Allow for loading from config
     }

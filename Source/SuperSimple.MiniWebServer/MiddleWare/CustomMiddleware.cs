@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SuperSimple.MiniWebServer.MiddleWare
+﻿namespace SuperSimple.MiniWebServer.MiddleWare
 {
+    using System;
+    using System.Threading.Tasks;
+    using Environment = SuperSimple.MiniWebServer.Environment;
+
     //TODO: Test this...
     public class CustomMiddleware : IMiddleware
     {

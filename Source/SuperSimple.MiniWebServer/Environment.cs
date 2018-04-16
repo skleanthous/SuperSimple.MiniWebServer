@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SuperSimple.MiniWebServer
+﻿namespace SuperSimple.MiniWebServer
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
+    using System.Threading.Tasks;
+
     public class Environment : WrappedDictionary<string, object>, IDictionary<string, object>
     {
         private RequestHeaders requestHeaders;

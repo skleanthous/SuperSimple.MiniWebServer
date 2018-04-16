@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SuperSimple.MiniWebServer.MiddleWare.Dynamo
+﻿namespace SuperSimple.MiniWebServer.MiddleWare.Dynamo
 {
+    using System.Threading.Tasks;
+    using Environment = SuperSimple.MiniWebServer.Environment;
+
     internal interface IDynamoRouter
     {
         IController GetFrom(string route, string method);

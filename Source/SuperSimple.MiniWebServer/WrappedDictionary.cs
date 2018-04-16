@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-namespace SuperSimple.MiniWebServer
+﻿namespace SuperSimple.MiniWebServer
 {
+    using System.Collections;
+    using System.Collections.Generic;
+
     public class WrappedDictionary<TKey, TValue> : IDictionary<TKey, TValue>
     {
         private IDictionary<TKey, TValue> wrappedDictionary { get; set; }

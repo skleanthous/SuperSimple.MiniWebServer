@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
-
-
-namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
+﻿namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
 {
     using SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions.Helpers;
+    using System;
+    using TechTalk.SpecFlow;
 
     [Binding]
     public class Lifetime
@@ -32,7 +26,7 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
         public void ScenarioSetup()
         {
             var serverStarter = Configuration.Start()
-                .SetHostAddress(System.Uri.UriSchemeHttp, "localhost", 8182)
+                .SetBaseUrl(new Uri("http://localhost:8182"))
                 .WithMiddleware()
                 .AddDynamicController()
                 .AddControllerFunction(ControllerFunctionHelper.CanHandleCall, ControllerFunctionHelper.HandleCall)
@@ -45,7 +39,7 @@ namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
         [AfterScenario]
         public void ScenarioTeardown()
         {
-            ServerHandle.Dispose();
+            ServerHandle?.Dispose();
             ServerHandle = null;
         }
     }
