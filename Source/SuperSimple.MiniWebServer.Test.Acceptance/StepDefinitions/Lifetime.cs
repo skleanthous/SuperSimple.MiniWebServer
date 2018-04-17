@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
-
-
-namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
+﻿namespace SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions
 {
     using SuperSimple.MiniWebServer.Test.Acceptance.StepDefinitions.Helpers;
+    using System;
+    using TechTalk.SpecFlow;
 
     [Binding]
     public class Lifetime

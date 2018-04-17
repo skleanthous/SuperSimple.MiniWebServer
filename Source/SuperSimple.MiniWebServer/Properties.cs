@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace SuperSimple.MiniWebServer
+﻿namespace SuperSimple.MiniWebServer
 {
+    using System.Collections.Generic;
+
     public class Properties : WrappedDictionary<string, object>, IDictionary<string, object>
     {
         private const string HOST_ADDRESSES = "host.Addresses";
