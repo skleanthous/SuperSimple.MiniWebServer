@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SuperSimple.MiniWebServer</id>
-    <version>0.5.0</version>
+    <version>0.5.1</version>
     <title>SuperSimple.MiniWebServer</title>
     <authors>Savvas Kleanthous</authors>
     <owners>Savvas Kleanthous</owners>
@@ -13,7 +13,7 @@
     <copyright>Copyright 2017</copyright>
     <tags>OWIN Web server Web API acceptane tests custom</tags>
     <dependencies>
-	  <dependency id="Microsoft.Owin.Host.HttpListener" version="3.0.1" />
+	  <dependency id="Microsoft.Owin.Host.HttpListener" version="3.1.0" />
     </dependencies>  
   </metadata>
   <files>
