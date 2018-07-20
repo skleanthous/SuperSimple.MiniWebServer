@@ -25,11 +25,18 @@
         [BeforeScenario]
         public void ScenarioSetup()
         {
+            var fc = ControllerFunctionHelper;
+            Func<Request, bool> canHandleObject = (Request req) => fc.CanHandleCall(req) && fc.HandleCallFunc != null;
+            Func<Request, bool> canHandleHttpContent = (Request req) => fc.CanHandleCall(req) && fc.HandleHttpContentCallFunc != null;
+            Func<Request, bool> canHandleHttpContentAndStatus = (Request req) => fc.CanHandleCall(req) && fc.HandleHttpContentAndStatusCallFunc != null;
+
             var serverStarter = Configuration.Start()
                 .SetHostAddress(System.Uri.UriSchemeHttp, "localhost", 8182)
                 .WithMiddleware()
                 .AddDynamicController()
-                .AddControllerFunction(ControllerFunctionHelper.CanHandleCall, ControllerFunctionHelper.HandleCall)
+                .AddControllerFunction(canHandleObject, req => fc.HandleCallFunc(req))
+                .AddControllerFunctionThatReturnsHttpContent(canHandleHttpContent, req => fc.HandleHttpContentCallFunc(req))
+                .AddControllerFunctionThatReturnsHttpContent(canHandleHttpContentAndStatus, req => fc.HandleHttpContentAndStatusCallFunc(req))
                 .AddControllerFunction(ControllerFunctionWithReplyHelper.CanHandleCall, ControllerFunctionWithReplyHelper.HandleCall)
                 .Build();
 

@@ -172,13 +172,13 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.FactAttribute(DisplayName="Controller function returns HttpContent")]
+        [Xunit.FactAttribute(DisplayName="Controller function returns HttpContent old version")]
         [Xunit.TraitAttribute("FeatureTitle", "ControllerFunctionSpecs")]
-        [Xunit.TraitAttribute("Description", "Controller function returns HttpContent")]
+        [Xunit.TraitAttribute("Description", "Controller function returns HttpContent old version")]
         [Xunit.TraitAttribute("Category", "Acceptance.ControllerFunction")]
-        public virtual void ControllerFunctionReturnsHttpContent()
+        public virtual void ControllerFunctionReturnsHttpContentOldVersion()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Controller function returns HttpContent", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Controller function returns HttpContent old version", new string[] {
                         "Acceptance.ControllerFunction"});
 #line 37
 this.ScenarioSetup(scenarioInfo);
@@ -190,8 +190,8 @@ this.ScenarioSetup(scenarioInfo);
                         "MyName",
                         "5"});
 #line 38
- testRunner.Given("a controller function on GET - /MyResource/ResourceId that returns as HttpContent" +
-                    "", ((string)(null)), table6, "Given ");
+ testRunner.Given("a controller function on GET - /MyResource/ResourceId that returns HttpContent as" +
+                    " object", ((string)(null)), table6, "Given ");
 #line 41
  testRunner.When("I attempt a get on resource /MyResource/ResourceId", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -203,6 +203,78 @@ this.ScenarioSetup(scenarioInfo);
                         "5"});
 #line 42
  testRunner.Then("the reply should return", ((string)(null)), table7, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Controller function returns HttpContent")]
+        [Xunit.TraitAttribute("FeatureTitle", "ControllerFunctionSpecs")]
+        [Xunit.TraitAttribute("Description", "Controller function returns HttpContent")]
+        [Xunit.TraitAttribute("Category", "Acceptance.ControllerFunction")]
+        public virtual void ControllerFunctionReturnsHttpContent()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Controller function returns HttpContent", new string[] {
+                        "Acceptance.ControllerFunction"});
+#line 47
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Value"});
+            table8.AddRow(new string[] {
+                        "MyName",
+                        "5"});
+#line 48
+ testRunner.Given("a controller function on GET - /MyResource/ResourceId that returns as HttpContent" +
+                    "", ((string)(null)), table8, "Given ");
+#line 51
+ testRunner.When("I attempt a get on resource /MyResource/ResourceId", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Value"});
+            table9.AddRow(new string[] {
+                        "MyName",
+                        "5"});
+#line 52
+ testRunner.Then("the reply should return", ((string)(null)), table9, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Controller function returns HttpContent and status code")]
+        [Xunit.TraitAttribute("FeatureTitle", "ControllerFunctionSpecs")]
+        [Xunit.TraitAttribute("Description", "Controller function returns HttpContent and status code")]
+        [Xunit.TraitAttribute("Category", "Acceptance.ControllerFunction")]
+        public virtual void ControllerFunctionReturnsHttpContentAndStatusCode()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Controller function returns HttpContent and status code", new string[] {
+                        "Acceptance.ControllerFunction"});
+#line 57
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Value"});
+            table10.AddRow(new string[] {
+                        "MyName",
+                        "5"});
+#line 58
+ testRunner.Given("a controller function on GET - /MyResource/ResourceId that returns as HttpContent" +
+                    " with status code 203", ((string)(null)), table10, "Given ");
+#line 61
+ testRunner.When("I attempt a get on resource /MyResource/ResourceId", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 62
+ testRunner.Then("the reply should have a status code of 203", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name",
+                        "Value"});
+            table11.AddRow(new string[] {
+                        "MyName",
+                        "5"});
+#line 63
+ testRunner.And("the reply should return", ((string)(null)), table11, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -226,3 +298,5 @@ this.ScenarioSetup(scenarioInfo);
 }
 #pragma warning restore
 #endregion
+
+

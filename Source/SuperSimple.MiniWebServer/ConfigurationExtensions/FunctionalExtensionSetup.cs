@@ -1,6 +1,7 @@
 ﻿namespace SuperSimple.MiniWebServer
 {
     using System;
+    using System.Net;
     using System.Net.Http;
     using SuperSimple.MiniWebServer.MiddleWare.ControllerFunction;
     using SuperSimple.MiniWebServer.Response;
@@ -32,14 +33,26 @@
             Func<Request, HttpContent> controllerFunc)
             => AddControllerFunction(middlewareSetup, canHandle, controllerFunc);
 
-        public static IMiddlewareSetup AddControllerFunctionThatReturnsHttpContent(this IMiddlewareSetup middlewareSetup,
+        public static IMiddlewareSetup AddControllerFunctionThatReturnsHttpContent(
+            this IMiddlewareSetup middlewareSetup,
             Func<Request, bool> canHandle,
-            Func<Request, (HttpContent content, int returnCode)> controllerFunc)
+            Func<Request, (HttpContent content, int statusCode)> controllerFunc)
             => AddControllerFunction(middlewareSetup, canHandle, req =>
             {
                 var response = controllerFunc(req);
 
-                return new ControllerReply(response.content, response.returnCode);
+                return new ControllerReply(response.content, response.statusCode);
+            });
+
+        public static IMiddlewareSetup AddControllerFunctionThatReturnsHttpContent(
+            this IMiddlewareSetup middlewareSetup,
+            Func<Request, bool> canHandle,
+            Func<Request, (HttpContent content, HttpStatusCode statusCode)> controllerFunc)
+            => AddControllerFunction(middlewareSetup, canHandle, req =>
+            {
+                var response = controllerFunc(req);
+
+                return new ControllerReply(response.content, (int)response.statusCode);
             });
     }
 }

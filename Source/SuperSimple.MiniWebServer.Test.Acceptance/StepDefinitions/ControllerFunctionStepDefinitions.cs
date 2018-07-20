@@ -59,8 +59,10 @@
             };
         }
 
-        [Given(@"a controller function on (.*) - (.*) that returns as HttpContent")]
-        public void GivenAControllerFunctionOnMethodWithResourceThatReturnsAsHttpContent(string method, string resource, Table table)
+        [Given(@"a controller function on (.*) - (.*) that returns HttpContent as object")]
+        public void GivenAControllerFunctionOnMethodWithResourceThatReturnsHttpContentAsObject(string method,
+            string resource,
+            Table table)
         {
             var dataToReturn = new Data();
             table.FillInstance(dataToReturn);
@@ -71,6 +73,41 @@
                 hasBeenCalled = true;
 
                 return new StringContent(JsonConvert.SerializeObject(dataToReturn), Encoding.UTF8, "application/json");
+            };
+        }
+
+        [Given(@"a controller function on (.*) - (.*) that returns as HttpContent")]
+        public void GivenAControllerFunctionOnMethodWithResourceThatReturnsAsHttpContent(string method,
+            string resource,
+            Table table)
+        {
+            var dataToReturn = new Data();
+            table.FillInstance(dataToReturn);
+
+            ControllerFunctionHelper.ValidateCanHandleFunc = req => req == new Request(method, resource);
+            ControllerFunctionHelper.HandleHttpContentCallFunc = _ =>
+            {
+                hasBeenCalled = true;
+
+                return new StringContent(JsonConvert.SerializeObject(dataToReturn), Encoding.UTF8, "application/json");
+            };
+        }
+
+        [Given(@"a controller function on (.*) - (.*) that returns as HttpContent with status code (.*)")]
+        public void GivenAControllerFunctionOnMethodWithResourceThatReturnsAsHttpContent(string method,
+            string resource, int statucCode,
+            Table table)
+        {
+            var dataToReturn = new Data();
+            table.FillInstance(dataToReturn);
+
+            ControllerFunctionHelper.ValidateCanHandleFunc = req => req == new Request(method, resource);
+            ControllerFunctionHelper.HandleHttpContentAndStatusCallFunc = _ =>
+            {
+                hasBeenCalled = true;
+
+                return (new StringContent(JsonConvert.SerializeObject(dataToReturn), Encoding.UTF8, "application/json"),
+                    statucCode);
             };
         }
 
