@@ -1,10 +1,8 @@
 ﻿namespace SuperSimple.MiniWebServer
 {
     using System;
-    using System.Text;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
-    using SuperSimple.MiniWebServer.MiddleWare;
 
     public class Request : IEquatable<Request>
     {
@@ -26,18 +24,7 @@
         public T GetContentAs<T>() => JsonConvert.DeserializeObject<T>(Content);
 
         public static async Task<Request> FromEnvironment(Environment env)
-        {
-            string content = null;
-
-            if (env.RequestBody != null)
-            {
-                var contentBytes = await env.RequestBody.ReadAllBytes();
-                if (contentBytes != null)
-                    content = Encoding.UTF8.GetString(contentBytes);
-            }
-
-            return new Request(env.RequestMethod, env.RequestPath, env.RequestPathBase, env.RequestQueryString, content);
-        }
+            => new Request(env.RequestMethod, env.RequestPath, env.RequestPathBase, env.RequestQueryString, env.RequestContent);
 
         public static bool operator !=(Request left, Request right) => !(left == right);
         public static bool operator ==(Request left, Request right)

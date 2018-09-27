@@ -4,6 +4,7 @@
     using System.IO;
     using System.Text;
     using System.Threading.Tasks;
+    using SuperSimple.MiniWebServer.MiddleWare;
 
     public class Environment : WrappedDictionary<string, object>, IDictionary<string, object>
     {
@@ -26,6 +27,22 @@
         public string RequestPath => (string)this["owin.RequestPath"];
         public string RequestPathBase => (string)this["owin.RequestPathBase"];
         public string RequestQueryString => (string)this["owin.RequestQueryString"];
+
+        public string _requestContent = null;
+        public string RequestContent
+        {
+            get
+            {
+                if (_requestContent == null && RequestBody != null)
+                {
+                    var contentBytes = RequestBody.ReadAllBytes().Result;
+                    if (contentBytes != null)
+                        _requestContent = Encoding.UTF8.GetString(contentBytes);
+                }
+
+                return _requestContent;
+            }
+        }
 
         public Stream ResponseBody => (Stream)this["owin.ResponseBody"];
         public ResponseHeaders ResponseHeaders =>
